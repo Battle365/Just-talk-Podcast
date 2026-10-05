@@ -1,0 +1,2 @@
+import{SUPABASE_FREE_TIER_GUARDRAILS as L}from"./free-tier";export type SupabaseUsage={databaseBytes:number;storageBytes:number;egressBytes:number;monthlyActiveUsers:number;edgeFunctionInvocations:number;realtimeMessages:number;realtimePeakConnections:number};
+export function freeTierWarnings(u:SupabaseUsage){const warnings:string[]=[];for(const key of Object.keys(L)as (keyof typeof L)[]){const used=u[key],limit=L[key];if(used>=limit)warnings.push(`${key}:limit`);else if(used>=limit*.8)warnings.push(`${key}:warning`);}return warnings;}

@@ -1,0 +1,2 @@
+import{describe,expect,it}from"vitest";import{activeParticipants,introductionText}from"../../src/lib/studio";
+describe("studio rules",()=>{it("formats guest lower third",()=>expect(introductionText({id:"g",displayName:"Taylor",role:"guest",connected:true})).toBe("Guest — Taylor"));it("shows only connected participants",()=>expect(activeParticipants([{id:"1",displayName:"Host",role:"host",connected:true},{id:"2",displayName:"Guest",role:"guest",connected:false}])).toHaveLength(1));});
