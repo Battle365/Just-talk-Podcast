@@ -17,3 +17,9 @@
 - Twice-monthly show scheduling support.
 - Automatic analytics ingestion where provider APIs permit.
 - Architecture leaves service boundaries for scaling without complicating the host UI.
+
+## Access and pricing
+- Public podcast episodes and clips are free to watch or listen to.
+- No subscription, paywall, checkout, or payment account is required for public content.
+- Authentication protects private host/prep/studio/admin functions only.
+- The MVP has no billing or payment-provider integration.
