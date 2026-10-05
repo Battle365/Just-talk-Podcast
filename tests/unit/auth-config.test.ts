@@ -1,0 +1,2 @@
+import {describe,expect,it} from "vitest";import {getAuthMode} from "../../src/lib/auth/config";
+describe("auth configuration",()=>{it("uses safe preview mode without credentials",()=>expect(getAuthMode({})).toBe("preview"));it("enables Supabase only when both public values exist",()=>expect(getAuthMode({NEXT_PUBLIC_SUPABASE_URL:"https://example.supabase.co",NEXT_PUBLIC_SUPABASE_ANON_KEY:"anon"})).toBe("supabase"));});
