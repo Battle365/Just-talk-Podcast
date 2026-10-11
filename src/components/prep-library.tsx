@@ -1,0 +1,9 @@
+"use client";
+import {FormEvent,useMemo,useState} from "react";
+import {buildPrepItem,PrepItem,PrepKind} from "@/lib/prep";
+export function PrepLibrary(){
+ const [items,setItems]=useState<PrepItem[]>([]); const [content,setContent]=useState(""); const [kind,setKind]=useState<PrepKind>("topic");
+ const counts=useMemo(()=>items.reduce<Record<string,number>>((a,x)=>(a[x.kind]=(a[x.kind]??0)+1,a),{}),[items]);
+ function submit(e:FormEvent){e.preventDefault();try{const item=buildPrepItem(crypto.randomUUID(),kind,content);setItems(v=>[item,...v]);setContent("");}catch{/* form remains for correction */}}
+ return <section className="workspace" aria-labelledby="prep-title"><header><p className="eyebrow">PRIVATE PREP</p><h1 id="prep-title">Episode Library</h1><p>Capture topics, notes and questions before the microphones turn on.</p></header><form onSubmit={submit} className="prep-form"><label>Type<select value={kind} onChange={e=>setKind(e.target.value as PrepKind)}><option value="topic">Topic</option><option value="question">Question</option><option value="note">Note</option><option value="ai_prompt">AI prompt</option></select></label><label>Idea<textarea value={content} onChange={e=>setContent(e.target.value)} placeholder="What should we talk about?" /></label><button type="submit">Save to prep</button></form><aside className="prep-summary" aria-label="Prep summary"><span>{items.length} saved</span><span>{counts.topic??0} topics</span><span>{counts.question??0} questions</span></aside><div className="prep-list">{items.length===0?<p className="empty">Your episode prep will appear here.</p>:items.map(item=><article key={item.id}><small>{item.kind.replace("_"," ")}</small><p>{item.content}</p></article>)}</div><p className="privacy-note">Local preview only. Supabase persistence activates after project credentials are configured.</p></section>;
+}

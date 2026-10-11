@@ -1,0 +1,1 @@
+import{describe,expect,it}from"vitest";import{supportsPublish}from"../../src/lib/publishing";describe("publishing boundaries",()=>{it("supports YouTube live",()=>expect(supportsPublish("youtube","live")).toBe(true));it("models Spotify as finished-episode publishing",()=>expect(supportsPublish("spotify","live")).toBe(false));});

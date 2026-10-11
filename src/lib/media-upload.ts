@@ -1,0 +1,2 @@
+export const ALLOWED_MEDIA_TYPES=["video/mp4","video/quicktime","audio/mpeg","audio/mp4"] as const;export const MVP_UPLOAD_MAX_BYTES=2*1024*1024*1024;
+export function validateMediaUpload(file:{type:string;size:number}){if(!ALLOWED_MEDIA_TYPES.includes(file.type as typeof ALLOWED_MEDIA_TYPES[number]))return{ok:false,reason:"unsupported_type"} as const;if(file.size<=0||file.size>MVP_UPLOAD_MAX_BYTES)return{ok:false,reason:"invalid_size"} as const;return{ok:true}as const;}

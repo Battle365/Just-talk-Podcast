@@ -1,0 +1,1 @@
+export type AuthMode="preview"|"supabase";export function getAuthMode(env:Record<string,string|undefined>=process.env):AuthMode{return env.NEXT_PUBLIC_SUPABASE_URL&&env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY?"supabase":"preview";}
